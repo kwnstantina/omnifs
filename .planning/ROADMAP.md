@@ -12,7 +12,7 @@ Four phases deliver the isomorphic file engine from zero to published library. P
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Project scaffold, build toolchain, environment detection, dual ESM/CJS output
+- [x] **Phase 1: Foundation** - Project scaffold, build toolchain, environment detection, dual ESM/CJS output (completed 2026-03-19)
 - [ ] **Phase 2: Core Read/Write Engine** - Unified read()/write() across all runtimes with smart format detection, streaming, and server hardening
 - [ ] **Phase 3: Lite Binary Drivers** - XLSX and DOCX lite parsing via fflate (~8KB), image handling, graceful fallback errors
 - [ ] **Phase 4: Framework Adapters & Docs** - React/Vue/Svelte reactive adapters, tree-shakeable entry points, README and API reference
@@ -92,7 +92,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 1/2 | In progress | - |
+| 1. Foundation | 2/2 | Complete   | 2026-03-19 |
 | 2. Core Read/Write Engine | 0/3 | Not started | - |
 | 3. Lite Binary Drivers | 0/2 | Not started | - |
 | 4. Framework Adapters & Docs | 0/2 | Not started | - |
