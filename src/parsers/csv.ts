@@ -6,7 +6,10 @@ import { textParser } from "./text.js";
  */
 
 export const csvParser = {
-	parse(data: Uint8Array | string, options?: Record<string, unknown>): string[][] {
+	parse(
+		data: Uint8Array | string,
+		options?: Record<string, unknown>,
+	): string[][] {
 		const str = textParser.parse(data);
 		if (str === "") return [];
 		const result = papaparse.parse<string[]>(str, {
@@ -19,7 +22,10 @@ export const csvParser = {
 };
 
 export const tsvParser = {
-	parse(data: Uint8Array | string, options?: Record<string, unknown>): string[][] {
+	parse(
+		data: Uint8Array | string,
+		options?: Record<string, unknown>,
+	): string[][] {
 		const str = textParser.parse(data);
 		if (str === "") return [];
 		const result = papaparse.parse<string[]>(str, {
