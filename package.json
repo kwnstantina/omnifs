@@ -48,12 +48,17 @@
       }
     }
   },
+  "files": [
+    "dist",
+    "src",
+    "!src/**/*.test.*"
+  ],
   "scripts": {
-    "build": "tsup && node -e \"const{copyFileSync}=require('fs');copyFileSync('dist/index.d.ts','dist/index.d.mts')\"",
+    "build": "tsup && node -e \"const{copyFileSync}=require('fs');['index','react','vue','svelte'].forEach(n=>copyFileSync('dist/'+n+'.d.ts','dist/'+n+'.d.mts'))\"",
     "test": "vitest run",
     "lint": "biome check src/",
     "format": "biome format --write src/",
-    "check-exports": "publint && attw --pack ."
+    "check-exports": "publint && attw --pack . --profile node16"
   },
   "engines": {
     "node": ">=20"
