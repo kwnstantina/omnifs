@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Build
+        run: pnpm build
+
+      - name: Test
+        run: pnpm test
+
+      - name: Validate exports
+        run: pnpm check-exports
+
+      - name: Bundle size gate (core bundle must be under 20KB gzipped)
+        run: |
+          SIZE=$(gzip -c dist/index.mjs | wc -c)
+          echo "Core bundle size: $SIZE bytes gzipped"
+          if [ "$SIZE" -gt 20480 ]; then
+            echo "FAIL: Core bundle exceeds 20KB gzipped ($SIZE bytes)"
+            exit 1
+          fi
+          echo "PASS: Core bundle is within 20KB limit ($SIZE bytes)"
