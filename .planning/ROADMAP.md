@@ -32,7 +32,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 2 plans
 
 Plans:
-- [ ] 01-01: Project scaffold, tsup config, dual ESM/CJS build with exports map
+- [x] 01-01: Project scaffold, tsup config, dual ESM/CJS build with exports map
 - [ ] 01-02: Environment detector and CI setup (vitest, publint, bundle size gate)
 
 ### Phase 2: Core Read/Write Engine
@@ -92,7 +92,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/2 | Not started | - |
+| 1. Foundation | 1/2 | In progress | - |
 | 2. Core Read/Write Engine | 0/3 | Not started | - |
 | 3. Lite Binary Drivers | 0/2 | Not started | - |
 | 4. Framework Adapters & Docs | 0/2 | Not started | - |
