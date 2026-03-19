@@ -1,10 +1,9 @@
-// Extend globalThis to type Bun, Deno and process without importing runtime type packages
+// Extend globalThis to type Bun and Deno without importing runtime type packages
 declare global {
 	// biome-ignore lint/suspicious/noExplicitAny: intentional untyped global for runtime detection
 	var Bun: any;
 	// biome-ignore lint/suspicious/noExplicitAny: intentional untyped global for runtime detection
 	var Deno: any;
-	var process: { versions?: { node?: string } } | undefined;
 }
 
 /**
