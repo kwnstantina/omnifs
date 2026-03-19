@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 - [x] 01-01: Project scaffold, tsup config, dual ESM/CJS build with exports map
-- [ ] 01-02: Environment detector and CI setup (vitest, publint, bundle size gate)
+- [x] 01-02: Environment detector and CI setup (vitest, publint, bundle size gate)
 
 ### Phase 2: Core Read/Write Engine
 **Goal**: Users can read and write all common file formats from any supported runtime with zero configuration
@@ -46,12 +46,14 @@ Plans:
   4. `write('output.json', { key: 'value' })` serializes and saves correctly; `write('output.csv', rows)` serializes to CSV
   5. `stream('large.csv')` returns a ReadableStream that emits rows without loading the full file into memory
   6. Server writes use atomic temp-write then rename; path inputs containing `../` are rejected with a clear error
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- [ ] 02-01: I/O backends for Node, Bun, Deno (read/write/atomic write/path sanitization)
-- [ ] 02-02: Browser backends (fetch URL, FileReader for Blob, download trigger for write)
-- [ ] 02-03: Parsers/serializers (text, JSON, CSV/TSV via papaparse), format detector, streaming support
+- [ ] 02-01-PLAN.md — Core contracts (Backend/Parser interfaces), format detector, path sanitization
+- [ ] 02-02-PLAN.md — Parsers/serializers (text, JSON, CSV/TSV via papaparse) with TDD
+- [ ] 02-03-PLAN.md — Server I/O backends (Node, Bun, Deno) with atomic write
+- [ ] 02-04-PLAN.md — Browser I/O backend (fetch, FileReader, download trigger)
+- [ ] 02-05-PLAN.md — Wire read/write/writeRaw/stream facade, parser registry, backend resolver
 
 ### Phase 3: Lite Binary Drivers
 **Goal**: Users can extract content from XLSX and DOCX files using a driver that stays under 8KB, with graceful errors for unsupported complexity
@@ -93,6 +95,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete    | 2026-03-19 |
-| 2. Core Read/Write Engine | 0/3 | Not started | - |
+| 2. Core Read/Write Engine | 0/5 | Not started | - |
 | 3. Lite Binary Drivers | 0/2 | Not started | - |
 | 4. Framework Adapters & Docs | 0/2 | Not started | - |
