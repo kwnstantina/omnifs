@@ -1,3 +1,5 @@
+export type { RuntimeEnv } from "./env.js";
+export { detectEnv } from "./env.js";
 export { OmniFormatError, OmniReadError, OmniWriteError } from "./errors.js";
 export type { OmniResult, ReadOptions, WriteOptions } from "./types.js";
 
