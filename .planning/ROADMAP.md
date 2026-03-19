@@ -95,6 +95,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete    | 2026-03-19 |
-| 2. Core Read/Write Engine | 0/5 | Not started | - |
+| 2. Core Read/Write Engine | 2/5 | In Progress|  |
 | 3. Lite Binary Drivers | 0/2 | Not started | - |
 | 4. Framework Adapters & Docs | 0/2 | Not started | - |
