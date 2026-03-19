@@ -3,48 +3,69 @@ export { detectEnv } from "./env.js";
 export { OmniFormatError, OmniReadError, OmniWriteError } from "./errors.js";
 export type { OmniResult, ReadOptions, WriteOptions } from "./types.js";
 
-import { OmniReadError, OmniWriteError } from "./errors.js";
+import {
+	routedRead,
+	routedStream,
+	routedWrite,
+	routedWriteRaw,
+} from "./router.js";
 import type { ReadOptions, WriteOptions } from "./types.js";
 
 /**
  * Read a file and parse it automatically based on its format.
  *
- * @param path - Path or URL to the file
- * @param options - Optional format-specific options
- * @returns Parsed file contents
+ * @param source - Path, URL, or browser File/Blob
+ * @param options - Optional format-specific options (e.g., delimiter for CSV)
+ * @returns Parsed file contents — type depends on format
  */
 export async function read<T = unknown>(
-	path: string,
-	_options?: ReadOptions,
+	source: string | Blob | File,
+	options?: ReadOptions,
 ): Promise<T> {
-	throw new OmniReadError("Not implemented", path);
+	return routedRead<T>(source, options);
 }
 
 /**
  * Write data to a file, serializing it to the appropriate format.
+ * On server runtimes, uses atomic writes (temp file + rename).
+ * In the browser, triggers a file download.
  *
- * @param path - Path or URL to the file
- * @param data - Data to write
+ * @param path - File path or filename
+ * @param data - Data to serialize and write
  * @param options - Optional format-specific options
  */
 export async function write(
 	path: string,
-	_data: unknown,
-	_options?: WriteOptions,
+	data: unknown,
+	options?: WriteOptions,
 ): Promise<void> {
-	throw new OmniWriteError("Not implemented", path);
+	return routedWrite(path, data, options);
 }
 
 /**
- * Stream a file as a ReadableStream, parsing records incrementally.
+ * Write raw bytes or string to a file without serialization.
  *
- * @param path - Path or URL to the file
+ * @param path - File path or filename
+ * @param data - Raw bytes or string to write
+ */
+export async function writeRaw(
+	path: string,
+	data: Uint8Array | string,
+): Promise<void> {
+	return routedWriteRaw(path, data);
+}
+
+/**
+ * Stream a file as a ReadableStream of parsed records.
+ * Supports CSV, TSV, and text formats.
+ *
+ * @param path - File path or URL
  * @param options - Optional format-specific options
- * @returns A ReadableStream of parsed records
+ * @returns ReadableStream of parsed records
  */
 export async function stream(
 	path: string,
-	_options?: ReadOptions,
+	options?: ReadOptions,
 ): Promise<ReadableStream> {
-	throw new OmniReadError("Not implemented", path);
+	return routedStream(path, options);
 }
